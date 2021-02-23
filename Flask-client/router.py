@@ -43,7 +43,7 @@ def SimulaInvestimento():
         lista_valores_cdb.append(int(valor_final_cdb))
         lista_valores_poupanca.append(int(valor_final_poupanca))
         lista_intervalo.append(iterator+1)
-    conection.connect_process('insert', 'postgres', body, int(valor_final_cdb), valor_final_poupanca)
+    conection.connect_process('insert', 'simulacao', body, int(valor_final_cdb), valor_final_poupanca)
 
     return {"valores_poupanca": lista_valores_poupanca,
             "valores_cdb": lista_valores_cdb,
@@ -54,7 +54,7 @@ def SimulaInvestimento():
 def Consulta_Simul():
     lista = []
     body = request.get_json(force=True)
-    simulacoes = conection.connect_process('select', 'postgres', body, 0, 0)
+    simulacoes = conection.connect_process('select', 'simulacao', body, 0, 0)
     return{'simulacoes': simulacoes}
 
     
